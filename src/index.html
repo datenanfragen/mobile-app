@@ -1,45 +1,16 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
-    <style>
-        body {
-            margin: 40px auto;
-            max-width: 720px;
-            line-height: 1.6;
-            font-size: 18px;
-            font-family: "Georgia", serif;
-            color: #444;
-            background-color: #EEE;
-            padding: 0 10px;
-        }
-
-        h1,
-        h2,
-        h3 {
-            line-height: 1.2;
-        }
-
-        a,
-        a:visited {
-            color: #00529B;
-            text-decoration: none;
-        }
-
-        a:hover,
-        a:active,
-        a:focus {
-            color: #007ed7;
-        }
-    </style>
-</head>
-
-<body>
-    abc
-
-    <script src="index.ts" type="module"></script>
-</body>
-
+  <head>
+    <meta charset="UTF-8">
+    <title>Datenanfragen.de mobile app</title>
+    <link rel="stylesheet" href="./style/main.scss">
+  </head>
+  <body>
+    <aside id=flash-messages></aside>
+    <div class="container">
+      <main id="app"></main>
+    </div>
+    <script src="./js/setup-window.ts" type="module"></script>
+    <script src="./js/index.tsx" type="module"></script>
+  </body>
 </html>
