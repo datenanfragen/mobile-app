@@ -11,3 +11,5 @@ To build the project locally for development, follow these steps:
 5. Use `yarn cap run android` to run the app for Android. You can append `--target [emulator_name]` to not have to pick the device every time.
 
 See the [Capacitor workflow docs](https://capacitorjs.com/docs/v3/basics/workflow) for more details.
+
+You can use the Chrome remote dev tools (`chrome://inspect`).

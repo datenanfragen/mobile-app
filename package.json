@@ -29,11 +29,14 @@
         "@capacitor/android": "^3.5.1",
         "@capacitor/core": "^3.5.1",
         "@capacitor/local-notifications": "^1.1.0",
+        "@datenanfragen/components": "^1.0.0",
         "cordova-plugin-imap": "^1.1.0",
+        "preact": "^10.8.2",
         "rxjs": "^7.5.5"
     },
     "devDependencies": {
         "@capacitor/cli": "^3.5.1",
+        "@parcel/transformer-sass": "2.5.0",
         "npm-run-all": "^4.1.5",
         "parcel": "^2.5.0",
         "process": "^0.11.10"
@@ -41,5 +44,11 @@
     "scripts": {
         "dev:parcel": "parcel watch src/index.html --dist-dir public --public-url . --no-hmr",
         "dev": "yarn npm-run-all --parallel dev:*"
+    },
+    "alias": {
+        "react": "preact/compat",
+        "react-dom/test-utils": "preact/test-utils",
+        "react-dom": "preact/compat",
+        "react/jsx-runtime": "preact/jsx-runtime"
     }
 }
