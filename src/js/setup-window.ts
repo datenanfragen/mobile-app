@@ -1,6 +1,7 @@
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { setupWindow, useAppStore } from '@datenanfragen/components';
 import en_mobile_translations from '../i18n/en.json';
+import { SecureStoragePlugin } from 'capacitor-secure-storage-plugin';
 
 // TODO: Error handler.
 let errorId = 1;
@@ -32,3 +33,9 @@ if (typeof useAppStore.getState().saveRequestContent === 'undefined')
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 window.I18N_DEFINITIONS_MOBILE = translations[useAppStore.getState().savedLocale as keyof typeof translations];
+
+window.email = {
+    setSmtpPassword: (password) =>
+        SecureStoragePlugin.set({ key: 'Datenanfragen.de-smtp-password', value: password }).then(),
+    getSmtpPassword: () => SecureStoragePlugin.get({ key: 'Datenanfragen.de-smtp-password' }).then((r) => r.value),
+};

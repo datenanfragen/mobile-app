@@ -8,6 +8,11 @@ declare global {
         readonly CODE_VERSION: string;
 
         readonly I18N_DEFINITIONS_MOBILE: typeof i18n_definition_type;
+
+        email: {
+            setSmtpPassword: (password: string) => Promise<void>;
+            getSmtpPassword: () => Promise<string>;
+        };
     }
 
     // We don't need the full node types.
