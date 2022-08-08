@@ -4,6 +4,11 @@
         <meta charset="UTF-8" />
         <title>Datenanfragen.de mobile app</title>
         <link rel="stylesheet" href="./style/main.scss" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self'; connect-src 'self' http://localhost:1314 https://www.datenanfragen.de https://www.datarequests.org https://www.demandetesdonnees.fr https://www.pedidodedados.org https://www.solicituddedatos.es https://www.osobnipodaci.org https://www.gegevensaanvragen.nl https://search.datenanfragen.de; font-src data: 'self'; worker-src blob:; img-src 'self' data:;"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
         <aside id="flash-messages"></aside>

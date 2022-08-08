@@ -1,18 +1,34 @@
 import { LocalNotifications } from '@capacitor/local-notifications';
-import { setupWindow } from '@datenanfragen/components';
+import { setupWindow, useAppStore } from '@datenanfragen/components';
+import en_mobile_translations from '../i18n/en.json';
 
 // TODO: Error handler.
 let errorId = 1;
-const logError = (err: ErrorEvent | PromiseRejectionEvent) => {
+const errorHandler = (err: ErrorEvent | PromiseRejectionEvent) => {
     if ('message' in err)
         LocalNotifications.schedule({
             notifications: [{ title: 'An error occurred', body: err.message, id: errorId++ }],
         });
     console.error('An error occurred:', err);
 };
-window.addEventListener('unhandledrejection', logError);
-window.addEventListener('error', logError);
+window.addEventListener('unhandledrejection', (e) => {
+    // Work around annoying Chromium bug, see: https://stackoverflow.com/q/72396527
+    if ('defaultPrevented' in e && !e.defaultPrevented) errorHandler(e.reason);
+});
+window.addEventListener('error', errorHandler);
 
-// Setup window for @datenanfragen/components.
-(window as typeof window & { LOCALE: string }).LOCALE = 'en';
-setupWindow();
+const translations = {
+    en: en_mobile_translations,
+};
+
+setupWindow({ supported_languages: { en: undefined, de: undefined }, locale: useAppStore.getState().savedLocale });
+if (process.env.NODE_ENV === 'development')
+    (window as typeof window & { BASE_URL: string }).BASE_URL = 'http://localhost:1314/';
+
+// TODO: Make this available in the settings/set it in the tutorial
+if (typeof useAppStore.getState().saveRequestContent === 'undefined')
+    useAppStore.getState().setPreference({ saveRequestContent: true });
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+window.I18N_DEFINITIONS_MOBILE = translations[useAppStore.getState().savedLocale as keyof typeof translations];

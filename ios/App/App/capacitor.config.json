@@ -9,5 +9,10 @@
 			"iconColor": "#214192",
 			"sound": "beep.wav"
 		}
+	},
+	"server": {
+		"url": "http://localhost:1234",
+		"cleartext": true,
+		"allowNavigation": []
 	}
 }
