@@ -1,0 +1,32 @@
+{
+    "app": {
+        "new-requests": "New requests",
+        "proceedings": "Proceedings",
+        "settings": "Settings"
+    },
+    "settings": {
+        "title": "Settings",
+        "email-settings": "Email settings (optional)",
+        "email-settings-explanation": "If you want to send email directly from the app via an existing mailserver, you can add your login credentials here. We support all server configurations supported by nodemailer.",
+        "from-email": "From email",
+        "email-password": "Email account password",
+        "email-host": "SMTP server hostname",
+        "email-port": "SMTP server port",
+        "show-password": "Show password while typing",
+        "from-email-placeholder": "test@example.com",
+        "email-secure": "Use TLS instaed of STARTTLS (unencrypted connections are not supported)",
+        "test-smtp-connection": "Test connection settings",
+        "test-smtp-connection-loading": "Testing…",
+        "smtp-connection-success": "Your connection is setup correctly!",
+        "smtp-connection-error": "The connection failed, please check your credentials."
+    },
+    "generator": {
+        "send-email-success": "Email was successfully sent!",
+        "send-email-error": "There was an error while sending your email. Maybe check your SMTP settings?"
+    },
+    "proceedings": {
+        "title": "Proceedings",
+        "explanation": "Here is a list of all requests you have generated so far with this app. You can collect all communication concerning your requests in here and generate replys.",
+        "explanation-saving": "This data is saved <strong>exclusively</strong> on your own computer and will never be sent to us. It will remain saved until you delete it, which you can do on this page. You can also export all data as a CSV file."
+    }
+}
