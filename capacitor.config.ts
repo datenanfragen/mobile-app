@@ -19,7 +19,7 @@ const config: CapacitorConfig = {
     },
 
     server: {
-        url: process.env.NODE_ENV === 'development' ? 'http://localhost:1234' : undefined,
+        url: process.env.NODE_ENV === 'development' ? 'http://10.0.2.2:1234' : undefined,
         cleartext: process.env.NODE_ENV === 'development',
         allowNavigation: [],
     },

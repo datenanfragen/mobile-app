@@ -14,7 +14,7 @@
 		"overrideUserAgent": "dade-app-dev"
 	},
 	"server": {
-		"url": "http://localhost:1234",
+		"url": "http://10.0.2.2:1234",
 		"cleartext": true,
 		"allowNavigation": []
 	}
