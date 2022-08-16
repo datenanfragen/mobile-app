@@ -24,23 +24,19 @@
         "url": "https://github.com/datenanfragen/mobile-app/issues"
     },
     "dependencies": {
-        "@awesome-cordova-plugins/core": "^5.42.0",
-        "@awesome-cordova-plugins/imap": "^5.42.0",
         "@capacitor/android": "^3.5.1",
         "@capacitor/core": "^3.5.1",
         "@capacitor/ios": "^3.6.0",
         "@capacitor/local-notifications": "^1.1.0",
         "@datenanfragen/components": "/home/benni/coding/git-repos/Datenanfragen.de/website/components-package",
-        "@types/preact-i18n": "^2.3.1",
         "capacitor-secure-storage-plugin": "^0.7.1",
-        "cordova-plugin-imap": "^1.1.0",
         "preact": "^10.8.2",
-        "preact-i18n": "^2.3.0-preactx",
-        "rxjs": "^7.5.5"
+        "preact-i18n": "^2.3.0-preactx"
     },
     "devDependencies": {
         "@capacitor/cli": "^3.5.1",
         "@parcel/transformer-sass": "2.5.0",
+        "@types/preact-i18n": "^2.3.1",
         "buffer": "^6.0.3",
         "npm-run-all": "^4.1.5",
         "parcel": "^2.5.0",

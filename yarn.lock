@@ -7,20 +7,6 @@
   resolved "https://registry.yarnpkg.com/@algolia/events/-/events-4.0.1.tgz#fd39e7477e7bc703d7f893b556f676c032af3950"
   integrity sha512-FQzvOCgoFXAbf5Y6mYozw2aj5KCJoA3m4heImceldzPSMbdyS4atVjJzXKMsfX3wnZTFYwkkt8/z8UesLHlSBQ==
 
-"@awesome-cordova-plugins/core@^5.42.0":
-  version "5.42.0"
-  resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/core/-/core-5.42.0.tgz#657b431bba8ea63ba5bc258bd509d42fe017740e"
-  integrity sha512-49+CGO7ZU7s+6HsR3Z4hDhcb9sBrCSP5FT9HXfa+EySh6nqHcUPC5tFT02sF9RSFNtovNEOTqjO/n78yp9XboQ==
-  dependencies:
-    "@types/cordova" latest
-
-"@awesome-cordova-plugins/imap@^5.42.0":
-  version "5.42.0"
-  resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/imap/-/imap-5.42.0.tgz#f35206bfe3c0a893505bef755a0783fdb1a79161"
-  integrity sha512-FYDeohZjJM/wav3r1GxEUVs7rlrkHlvxFCIBUQO1zECdLPHTN6uHfFFwxvUcFPMeK67nMlVJhC8SLQEOs54yCg==
-  dependencies:
-    "@types/cordova" latest
-
 "@babel/code-frame@^7.0.0":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.16.7.tgz#44416b6bd7624b998f5b1af5d470856c40138789"
@@ -940,11 +926,6 @@
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
   integrity sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==
 
-"@types/cordova@latest":
-  version "0.0.34"
-  resolved "https://registry.yarnpkg.com/@types/cordova/-/cordova-0.0.34.tgz#ea7addf74ecec3d7629827a0c39e2c9addc73d04"
-  integrity sha512-rkiiTuf/z2wTd4RxFOb+clE7PF4AEJU0hsczbUdkHHBtkUmpWQpEddynNfJYKYtZFJKbq4F+brfekt1kx85IZA==
-
 "@types/parse-json@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
@@ -1370,11 +1351,6 @@ convert-source-map@^1.5.1:
   integrity sha512-+OQdjP49zViI/6i7nIJpA8rAl4sV/JdPfU9nZs3VqOwGIgizICvuN2ru6fMd+4llL0tar18UYJXfZ/TWtmhUjA==
   dependencies:
     safe-buffer "~5.1.1"
-
-cordova-plugin-imap@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-imap/-/cordova-plugin-imap-1.1.0.tgz#d1a68138761312ff15bf6762c71f84c7aeec3767"
-  integrity sha512-Cuv5qovRIDcxte3Q8UjKRPjqQ2P6A4fkYUySTpWbkkgs9cFdsChqvjVwj1azUG3aUQyqT+zbfIskex14Cl4rvg==
 
 core-js@^2.4.0:
   version "2.6.12"
@@ -3150,13 +3126,6 @@ restructure@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/restructure/-/restructure-2.0.1.tgz#4199745466cfc9bb9e1647746a4c902b7b0049d1"
   integrity sha512-e0dOpjm5DseomnXx2M5lpdZ5zoHqF1+bqdMJUohoYVVQa7cBdnk7fdmeI6byNWP/kiME72EeTiSypTCVnpLiDg==
-
-rxjs@^7.5.5:
-  version "7.5.5"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.5.5.tgz#2ebad89af0f560f460ad5cc4213219e1f7dd4e9f"
-  integrity sha512-sy+H0pQofO95VDmFLzyaw9xNJU4KTRSwQIGM6+iG3SypAtCiLDzpeG8sJrNCWn2Up9km+KhkvTdbkrdy+yzZdw==
-  dependencies:
-    tslib "^2.1.0"
 
 safe-buffer@^5.0.1, safe-buffer@~5.2.0:
   version "5.2.1"
