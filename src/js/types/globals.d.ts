@@ -1,4 +1,5 @@
 import type i18n_definition_type from '../../i18n/en.json';
+import type { SendMessageOptions } from '../../plugins/email';
 
 declare global {
     interface Window {
@@ -10,8 +11,11 @@ declare global {
         readonly I18N_DEFINITIONS_MOBILE: typeof i18n_definition_type;
 
         email: {
-            setSmtpPassword: (password: string) => Promise<void>;
-            getSmtpPassword: () => Promise<string>;
+            setEmailAccountPassword: (protocol: 'imap' | 'smtp', password: string) => Promise<void>;
+            getEmailAccountPassword: (protocol: 'imap' | 'smtp') => Promise<string>;
+
+            verifyConnection: () => Promise<boolean>;
+            sendMessage: (options: SendMessageOptions) => Promise<void>;
         };
     }
 
