@@ -55,22 +55,18 @@ export type SetMobileAppPageFunction = (newPage: MobileAppPageId) => void;
 
 const DesktopApp = () => {
     const showTutorial = useAppSettingsStore((state) => state.showTutorial);
-    const smtpSettings = useAppSettingsStore((state) => state.smtpSettings);
+    const smtpUser = useAppSettingsStore((state) => state.emailAccountSettings.smtpUser);
 
     const sendMail = useMemo(
         () =>
-            smtpSettings.account === ''
+            smtpUser === ''
                 ? undefined
                 : (data: EmailData) => {
                       window.email
                           .sendMessage({
                               ...data,
-                              from: smtpSettings.account, // TODO: Support multiple from adresses
-                              smtpOptions: smtpSettings,
-                          })
-                          .then((info) => {
-                              console.log(info);
-                              if (!info.accepted.includes(data.to)) throw Error('From address was not accepted');
+                              to: [data.to],
+                              from: smtpUser, // TODO: Support multiple from adresses
                           })
                           .then(() =>
                               flash(
@@ -81,17 +77,18 @@ const DesktopApp = () => {
                                   </FlashMessage>
                               )
                           )
-                          .catch((e) =>
+                          .catch((e) => {
+                              console.error('Sending email failed:', e);
                               flash(
                                   <FlashMessage type="error">
                                       <IntlProvider definition={window.I18N_DEFINITIONS_MOBILE} scope="generator">
                                           <Text id="send-email-error" />
                                       </IntlProvider>
                                   </FlashMessage>
-                              )
-                          );
+                              );
+                          });
                   },
-        [smtpSettings]
+        []
     );
 
     const { Wizard, set, pageId } = useWizard(pages(setPage, sendMail), {
