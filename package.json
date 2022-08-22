@@ -30,6 +30,7 @@
         "@capacitor/local-notifications": "^1.1.0",
         "@datenanfragen/components": "/home/benni/coding/git-repos/Datenanfragen.de/website/components-package",
         "capacitor-secure-storage-plugin": "^0.7.1",
+        "immer": "^9.0.15",
         "preact": "^10.8.2",
         "preact-i18n": "^2.3.0-preactx"
     },

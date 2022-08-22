@@ -79,6 +79,30 @@
   resolved "https://registry.yarnpkg.com/@capacitor/local-notifications/-/local-notifications-1.1.0.tgz#614c3d27fd6fe3f1d89bbed8dbdf4c7eaf234f08"
   integrity sha512-l6S9rBylxGPq/U+xpJzZcOL4l2s8I2Igq7uDTidR4imIxxX3bLRz9nDSQREWsbQkFx7ALFm/5Y8PJGz2C6qKPw==
 
+"@datenanfragen/components@/home/benni/coding/git-repos/Datenanfragen.de/website/components-package":
+  version "1.0.0"
+  dependencies:
+    "@fontsource/firago" "^4.5.3"
+    "@fontsource/league-spartan" "^4.5.10"
+    autocomplete.js "^0.37.0"
+    brutusin-json-forms "https://github.com/brutusin/json-forms"
+    deepmerge "^4.2.2"
+    idb "^7.0.2"
+    immer "^9.0.12"
+    js-cookie "^2.2.1"
+    letter-generator "^2.0.2"
+    libphonenumber-js "^1.7.23"
+    localforage "^1.7.1"
+    pdfkit "^0.12.1"
+    prop-types "^15.7.2"
+    qrcode "^1.4.4"
+    react-instantsearch-dom "^6.26.0"
+    react-joyride "^1.11.4"
+    react-scrollspy "^3.4.0"
+    typesense "^1.2.2"
+    typesense-instantsearch-adapter "^2.4.0"
+    zustand "^3.7.1"
+
 "@datenanfragen/components@file:../website/components-package":
   version "1.0.0"
   dependencies:
@@ -2069,7 +2093,7 @@ immediate@~3.0.5:
   resolved "https://registry.yarnpkg.com/immediate/-/immediate-3.0.6.tgz#9db1dbd0faf8de6fbe0f5dd5e56bb606280de69b"
   integrity sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==
 
-immer@^9.0.12:
+immer@^9.0.12, immer@^9.0.15:
   version "9.0.15"
   resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.15.tgz#0b9169e5b1d22137aba7d43f8a81a495dd1b62dc"
   integrity sha512-2eB/sswms9AEUSkOm4SbV5Y7Vmt/bKRwByd52jfLkW4OLYeaTP3EEiJ9agqU0O/tq6Dk62Zfj+TJSqfm1rLVGQ==

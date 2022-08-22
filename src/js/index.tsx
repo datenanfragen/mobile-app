@@ -16,10 +16,11 @@ import { IntlProvider, translate, Text } from 'preact-i18n';
 import { Settings } from './settings';
 import { useMemo } from 'preact/hooks';
 import { Proceedings } from './proceedings';
+import { t_a } from '@datenanfragen/components';
 
 const pages = (setPage: SetMobileAppPageFunction, sendMail?: (data: EmailData) => void) => ({
     newRequests: {
-        title: translate('new-requests', 'app', window.I18N_DEFINITIONS_MOBILE),
+        title: t_a('new-requests', 'app'),
         component: (
             <RequestGeneratorProvider createStore={createGeneratorStore}>
                 <App
@@ -41,11 +42,11 @@ const pages = (setPage: SetMobileAppPageFunction, sendMail?: (data: EmailData) =
         ),
     },
     proceedings: {
-        title: translate('proceedings', 'app', window.I18N_DEFINITIONS_MOBILE),
+        title: t_a('proceedings', 'app'),
         component: <Proceedings setPage={setPage} />,
     },
     settings: {
-        title: translate('settings', 'app', window.I18N_DEFINITIONS_MOBILE),
+        title: t_a('settings', 'app'),
         component: <Settings />,
     },
 });
@@ -71,7 +72,7 @@ const DesktopApp = () => {
                           .then(() =>
                               flash(
                                   <FlashMessage type="success">
-                                      <IntlProvider definition={window.I18N_DEFINITIONS_MOBILE} scope="generator">
+                                      <IntlProvider definition={window.I18N_DEFINITION_APP} scope="generator">
                                           <Text id="send-email-success" />
                                       </IntlProvider>
                                   </FlashMessage>
@@ -81,7 +82,7 @@ const DesktopApp = () => {
                               console.error('Sending email failed:', e);
                               flash(
                                   <FlashMessage type="error">
-                                      <IntlProvider definition={window.I18N_DEFINITIONS_MOBILE} scope="generator">
+                                      <IntlProvider definition={window.I18N_DEFINITION_APP} scope="generator">
                                           <Text id="send-email-error" />
                                       </IntlProvider>
                                   </FlashMessage>

@@ -6,17 +6,10 @@
         "moduleResolution": "node",
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "lib": [
-            "dom",
-            "ES2020"
-        ],
+        "lib": ["dom", "ES2020"],
         "rootDir": "./",
         "baseUrl": ".",
         "resolveJsonModule": true,
-        "paths": {
-            "*": [
-                "./js/types/*"
-            ]
-        }
+        "noEmit": true
     }
 }

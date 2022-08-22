@@ -1,20 +1,17 @@
-type StringifiedBoolean = 'true' | 'false';
-type StringifiedNumber = `${number}`;
-
 export type EmailAccountSettings = {
     imapUser: string;
     imapPassword: string;
     imapHost: string;
-    imapPort: StringifiedNumber;
-    imapUseSsl: StringifiedBoolean;
-    imapUseStartTls: StringifiedBoolean;
+    imapPort: number;
+    imapUseSsl: boolean;
+    imapUseStartTls: boolean;
 
     smtpUser: string;
     smtpPassword: string;
     smtpHost: string;
-    smtpPort: StringifiedNumber;
-    smtpUseSsl: StringifiedBoolean;
-    smtpUseStartTls: StringifiedBoolean;
+    smtpPort: number;
+    smtpUseSsl: boolean;
+    smtpUseStartTls: boolean;
 };
 export type SendMessageOptions = {
     from: string;
