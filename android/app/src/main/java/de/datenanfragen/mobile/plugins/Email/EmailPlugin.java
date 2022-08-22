@@ -3,7 +3,6 @@ package de.datenanfragen.mobile.plugins.Email;
 import android.util.Log;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -13,6 +12,8 @@ import com.getcapacitor.JSObject;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+
+import java.util.Objects;
 
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
@@ -43,16 +44,16 @@ public class EmailPlugin extends Plugin {
                     call.getString("imapUser"),
                     call.getString("imapPassword"),
                     call.getString("imapHost"),
-                    call.getString("imapPort"),
-                    call.getString("imapUseSsl"),
-                    call.getString("imapUseStartTls"),
+                    Objects.requireNonNull(call.getInt("imapPort")).toString(),
+                    Objects.requireNonNull(call.getBoolean("imapUseSsl")).toString(),
+                    Objects.requireNonNull(call.getBoolean("imapUseStartTls")).toString(),
 
                     call.getString("smtpUser"),
                     call.getString("smtpPassword"),
                     call.getString("smtpHost"),
-                    call.getString("smtpPort"),
-                    call.getString("smtpUseSsl"),
-                    call.getString("smtpUseStartTls")
+                    Objects.requireNonNull(call.getInt("smtpPort")).toString(),
+                    Objects.requireNonNull(call.getBoolean("smtpUseSsl")).toString(),
+                    Objects.requireNonNull(call.getBoolean("smtpUseStartTls")).toString()
             );
             call.resolve();
         } catch (Exception e) {

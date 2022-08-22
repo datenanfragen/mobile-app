@@ -1,5 +1,6 @@
 import { MobileAppPageId, SetMobileAppPageFunction } from './index';
-import { IntlProvider, translate } from 'preact-i18n';
+import { IntlProvider } from 'preact-i18n';
+import { t_a } from '@datenanfragen/components';
 
 type MenuProps = {
     setPage: SetMobileAppPageFunction;
@@ -8,20 +9,20 @@ type MenuProps = {
 
 const menuItems: Array<{ title: string; pageId: MobileAppPageId; icon: string }> = [
     {
-        title: translate('new-requests', 'app', window.I18N_DEFINITIONS_MOBILE),
+        title: t_a('new-requests', 'app'),
         pageId: 'newRequests',
         icon: 'plus-circle',
     },
     {
-        title: translate('proceedings', 'app', window.I18N_DEFINITIONS_MOBILE),
+        title: t_a('proceedings', 'app'),
         pageId: 'proceedings',
         icon: 'conversation',
     },
-    { title: translate('settings', 'app', window.I18N_DEFINITIONS_MOBILE), pageId: 'settings', icon: 'settings' },
+    { title: t_a('settings', 'app'), pageId: 'settings', icon: 'settings' },
 ];
 
 export const Menu = (props: MenuProps) => (
-    <IntlProvider definition={window.I18N_DEFINITIONS_MOBILE} scope="app">
+    <IntlProvider definition={window.I18N_DEFINITION_APP} scope="app">
         <nav id="main-menu">
             <ul>
                 {menuItems.map((item) => (

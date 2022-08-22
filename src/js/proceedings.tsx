@@ -6,7 +6,7 @@ type ProceedingsProps = {
     setPage: SetMobileAppPageFunction;
 };
 export const Proceedings = (props: ProceedingsProps) => (
-    <IntlProvider definition={window.I18N_DEFINITIONS_MOBILE} scope="proceedings">
+    <IntlProvider definition={window.I18N_DEFINITION_APP} scope="proceedings">
         <header>
             <h1>
                 <Text id="title" />
