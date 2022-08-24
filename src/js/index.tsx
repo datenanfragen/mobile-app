@@ -12,7 +12,7 @@ import {
 import { useAppSettingsStore } from './store/settings';
 import { SetupTutorial } from './setup-tutorial';
 import { Menu } from './menu';
-import { IntlProvider, translate, Text } from 'preact-i18n';
+import { IntlProvider, Text } from 'preact-i18n';
 import { Settings } from './settings';
 import { useMemo } from 'preact/hooks';
 import { Proceedings } from './proceedings';
