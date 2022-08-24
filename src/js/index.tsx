@@ -8,10 +8,10 @@ import {
     EmailData,
     flash,
     FlashMessage,
+    AppMenu,
 } from '@datenanfragen/components';
 import { useAppSettingsStore } from './store/settings';
 import { SetupTutorial } from './setup-tutorial';
-import { Menu } from './menu';
 import { IntlProvider, Text } from 'preact-i18n';
 import { Settings } from './settings';
 import { useMemo } from 'preact/hooks';
@@ -106,7 +106,7 @@ const DesktopApp = () => {
                 <SetupTutorial />
             ) : (
                 <>
-                    <Menu setPage={setPage} activePage={pageId} />
+                    <AppMenu setPage={setPage} activePage={pageId} />
                     <Wizard />
                 </>
             ),
