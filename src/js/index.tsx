@@ -9,13 +9,13 @@ import {
     flash,
     FlashMessage,
     AppMenu,
+    ProceedingsList,
 } from '@datenanfragen/components';
 import { useAppSettingsStore } from './store/settings';
 import { SetupTutorial } from './setup-tutorial';
 import { IntlProvider, Text } from 'preact-i18n';
 import { Settings } from './settings';
 import { useMemo } from 'preact/hooks';
-import { Proceedings } from './proceedings';
 import { t_a } from '@datenanfragen/components';
 
 const pages = (setPage: SetMobileAppPageFunction, sendMail?: (data: EmailData) => void) => ({
@@ -43,7 +43,7 @@ const pages = (setPage: SetMobileAppPageFunction, sendMail?: (data: EmailData) =
     },
     proceedings: {
         title: t_a('proceedings', 'app'),
-        component: <Proceedings setPage={setPage} />,
+        component: <ProceedingsList setPage={setPage} />,
     },
     settings: {
         title: t_a('settings', 'app'),
