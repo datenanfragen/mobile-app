@@ -1,15 +1,24 @@
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { SecureStoragePlugin } from 'capacitor-secure-storage-plugin';
-import { setupWindow, useAppStore } from '@datenanfragen/components';
-import { setupWindowForApp } from '@datenanfragen/components';
+import {
+    getGeneratedMessage,
+    getNameFromMesssage,
+    setupWindow,
+    t,
+    t_a,
+    useAppStore,
+    useProceedingsStore,
+    setupWindowForApp,
+} from '@datenanfragen/components';
 import { Email } from '../plugins/email';
+import { useAppSettingsStore } from './store/settings';
 
 // TODO: Error handler.
-let errorId = 1;
+let notificationId = 1;
 const errorHandler = (err: ErrorEvent | PromiseRejectionEvent) => {
     if ('message' in err)
         LocalNotifications.schedule({
-            notifications: [{ title: 'An error occurred', body: err.message, id: errorId++ }],
+            notifications: [{ title: 'An error occurred', body: err.message, id: notificationId++ }],
         });
     console.error('An error occurred:', err);
 };
@@ -47,4 +56,34 @@ window.email = {
 
     verifyConnection: () => Email.verifyConnection().then((r) => r.valid),
     sendMessage: (options) => Email.sendMessage(options),
+};
+
+window.ON_PROCEEDING_STATUS_CHANGE = (proceeding) => {
+    if (!useAppSettingsStore.getState().receiveNotifications) return;
+
+    if (proceeding.status === 'overdue') {
+        const originalRequest = getGeneratedMessage(proceeding, 'request')!;
+        const summaryLine = t('request-summary-line', 'my-requests', {
+            type: t(originalRequest.type, 'my-requests'),
+            recipient: getNameFromMesssage(originalRequest) || '',
+            date: originalRequest.date.toLocaleDateString(undefined, {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            }),
+            reference: proceeding.reference,
+        });
+
+        LocalNotifications.schedule({
+            notifications: [
+                {
+                    title: summaryLine,
+                    body: t_a('overdue-notification-body-short', 'proceedings'),
+                    largeBody: t_a('overdue-notification-body', 'proceedings'),
+                    id: notificationId++,
+                },
+            ],
+        });
+    }
 };

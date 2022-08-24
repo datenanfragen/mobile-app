@@ -1,4 +1,4 @@
-import type { appTranslations } from '@datenanfragen/components';
+import type { appTranslations, Proceeding } from '@datenanfragen/components';
 import type { SendMessageOptions } from '../../plugins/email';
 
 declare global {
@@ -17,6 +17,8 @@ declare global {
             verifyConnection: () => Promise<boolean>;
             sendMessage: (options: SendMessageOptions) => Promise<void>;
         };
+
+        ON_PROCEEDING_STATUS_CHANGE?: (proceeding: Proceeding, oldStatus: ProceedingStatus) => void;
     }
 
     // We don't need the full node types.
