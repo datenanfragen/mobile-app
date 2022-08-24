@@ -4,8 +4,14 @@ import { IntlProvider, Text } from 'preact-i18n';
 import { useAppSettingsStore } from './store/settings';
 
 export const Settings = () => {
-    const setEmailAccountSetting = useAppSettingsStore((state) => state.setEmailAccountSetting);
-    const emailAccountSettings = useAppSettingsStore((state) => state.emailAccountSettings);
+    const [setEmailAccountSetting, setReceiveNotifications] = useAppSettingsStore((state) => [
+        state.setEmailAccountSetting,
+        state.setReceiveNotifications,
+    ]);
+    const [emailAccountSettings, receiveNotifications] = useAppSettingsStore((state) => [
+        state.emailAccountSettings,
+        state.receiveNotifications,
+    ]);
 
     return (
         <IntlProvider definition={window.I18N_DEFINITION_APP} scope="settings">
@@ -22,6 +28,19 @@ export const Settings = () => {
                 saveLanguagesToStore={true}
                 onSavedLanguage={() => window.location.reload()}
             />
+
+            <hr style="margin: 15px 0;" />
+
+            <label>
+                <input
+                    checked={receiveNotifications}
+                    type="checkbox"
+                    className="form-element"
+                    onChange={(e) => setReceiveNotifications(e.currentTarget.checked)}
+                />
+                <Text id="receive-notifications" />
+            </label>
+
             <EmailAccountSettingsInput
                 emailAccountSettings={emailAccountSettings}
                 allowInsecureConnection={true}

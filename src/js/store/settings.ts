@@ -5,9 +5,11 @@ import { Email, EmailAccountSettings } from '../../plugins/email';
 
 type AppSettingsState = {
     showTutorial: boolean;
+    receiveNotifications: boolean;
     emailAccountSettings: Omit<EmailAccountSettings, 'imapPassword' | 'smtpPassword'>;
 
     setShowTutorial: (showTutorial: boolean) => void;
+    setReceiveNotifications: (receiveNotifications: boolean) => void;
     setEmailAccountSetting: <KeyT extends keyof EmailAccountSettings>(
         setting: KeyT,
         value: EmailAccountSettings[KeyT]
@@ -20,6 +22,7 @@ export const useAppSettingsStore = create<AppSettingsState>(
     persist(
         (set, get) => ({
             showTutorial: true,
+            receiveNotifications: false,
             emailAccountSettings: {
                 imapUser: '',
                 imapHost: '',
@@ -35,6 +38,7 @@ export const useAppSettingsStore = create<AppSettingsState>(
             },
 
             setShowTutorial: (showTutorial) => set({ showTutorial }),
+            setReceiveNotifications: (receiveNotifications) => set({ receiveNotifications }),
             setEmailAccountSetting: async (setting, value) => {
                 if (setting === 'imapPassword') await window.email.setEmailAccountPassword('imap', value as string);
                 else if (setting === 'smtpPassword')
