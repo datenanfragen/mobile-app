@@ -4,6 +4,7 @@ $primary-color: #214192;
 $light-blue: #e0edf8;
 $dark-blue: #192a4a;
 $bg-color: #f7fafc;
+$red-700: #c53030;
 
 .dynamic-input-controls {
     .dropup-container {
@@ -98,6 +99,18 @@ section[data-page-id] {
                 text-align: center;
                 flex-direction: column;
                 justify-content: center;
+                position: relative;
+
+                .badge {
+                    position: absolute;
+                    top: 2px;
+                    right: 32px;
+                    padding: 0 8px;
+                    font-size: 8pt;
+                    border-radius: 100px;
+                    color: $bg-color;
+                    background-color: $red-700;
+                }
             }
         }
     }
