@@ -1,17 +1,25 @@
-import { flash, FlashMessage, I18nWidget } from '@datenanfragen/components';
+import { flash, FlashMessage, I18nWidget, useCacheStore, useAppStore } from '@datenanfragen/components';
+import hardcodedOfflineData from '@datenanfragen/components/dist/offline-data.json';
 import { EmailAccountSettingsInput } from '@datenanfragen/components';
 import { IntlProvider, Text } from 'preact-i18n';
 import { useAppSettingsStore } from './store/settings';
 
 export const Settings = () => {
-    const [setEmailAccountSetting, setReceiveNotifications] = useAppSettingsStore((state) => [
+    const [setEmailAccountSetting, setReceiveNotifications, setUseOfflineSearch] = useAppSettingsStore((state) => [
         state.setEmailAccountSetting,
         state.setReceiveNotifications,
+        state.setUseOfflineSearch,
     ]);
-    const [emailAccountSettings, receiveNotifications] = useAppSettingsStore((state) => [
+    const [emailAccountSettings, receiveNotifications, useOfflineSearch] = useAppSettingsStore((state) => [
         state.emailAccountSettings,
         state.receiveNotifications,
+        state.useOfflineSearch,
     ]);
+
+    const savedLocale = useAppStore((state) => state.savedLocale);
+
+    const [offlineData, updateOfflineData] = useCacheStore((state) => [state.offlineData, state.updateOfflineData]);
+    const offlineDataDate = offlineData ? JSON.parse(offlineData).date : hardcodedOfflineData.date;
 
     return (
         <IntlProvider definition={window.I18N_DEFINITION_APP} scope="settings">
@@ -22,24 +30,59 @@ export const Settings = () => {
                 {/* TODO: Help icon with explanation text */}
             </header>
 
-            <I18nWidget
-                minimal={true}
-                showLanguageOnly={false}
-                saveLanguagesToStore={true}
-                onSavedLanguage={() => window.location.reload()}
-            />
-
-            <hr style="margin: 15px 0;" />
-
-            <label>
-                <input
-                    checked={receiveNotifications}
-                    type="checkbox"
-                    className="form-element"
-                    onChange={(e) => setReceiveNotifications(e.currentTarget.checked)}
+            <fieldset style="margin-bottom: 20px;">
+                <legend>
+                    <Text id="i18n" />
+                </legend>
+                <I18nWidget
+                    minimal={true}
+                    showLanguageOnly={false}
+                    saveLanguagesToStore={true}
+                    onSavedLanguage={() => window.location.reload()}
                 />
-                <Text id="receive-notifications" />
-            </label>
+            </fieldset>
+
+            <fieldset style="margin-bottom: 20px;">
+                <legend>
+                    <Text id="features" />
+                </legend>
+                <label>
+                    <input
+                        checked={receiveNotifications}
+                        type="checkbox"
+                        className="form-element"
+                        onChange={(e) => setReceiveNotifications(e.currentTarget.checked)}
+                    />
+                    <Text id="receive-notifications" />
+                </label>
+                <br />
+                <label>
+                    <input
+                        checked={useOfflineSearch}
+                        type="checkbox"
+                        className="form-element"
+                        onChange={(e) => setUseOfflineSearch(e.currentTarget.checked)}
+                    />
+                    <Text id="use-offline-search" />
+                </label>
+                {useOfflineSearch && (
+                    <>
+                        <br />
+                        <Text
+                            id="offline-search-updated-at"
+                            fields={{
+                                date: new Date(offlineDataDate).toLocaleString(savedLocale, {
+                                    dateStyle: 'long',
+                                    timeStyle: 'medium',
+                                }),
+                            }}
+                        />{' '}
+                        <button className="button button-secondary button-small" onClick={updateOfflineData}>
+                            <Text id="offline-search-update" />
+                        </button>
+                    </>
+                )}
+            </fieldset>
 
             <EmailAccountSettingsInput
                 emailAccountSettings={emailAccountSettings}
