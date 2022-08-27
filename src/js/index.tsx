@@ -73,6 +73,7 @@ const DesktopApp = () => {
     const offlineData = useCacheStore((state) =>
         state.offlineData ? JSON.parse(state.offlineData) : hardcodedOfflineData
     );
+    const updateOfflineData = useCacheStore((state) => state.updateOfflineData);
     const offlineSearch = useMemo(
         () => (useOfflineSearch ? miniSearchIndexFromOfflineData(offlineData) : false),
         [useOfflineSearch, offlineData]
@@ -127,6 +128,14 @@ const DesktopApp = () => {
             ) : (
                 <>
                     <AppMenu setPage={setPage} activePage={pageId} />
+                    {useOfflineSearch && new Date(offlineData.date) < new Date(Date.now() - 1000 * 60 * 60 * 24 * 14) && (
+                        <div class="box box-warning" style="margin-bottom: 20px;">
+                            {t_a('offline-data-outdated', 'settings')}
+                            <button class="button button-secondary button-small" onClick={updateOfflineData}>
+                                {t_a('offline-search-update', 'settings')}
+                            </button>
+                        </div>
+                    )}
                     <Wizard />
                 </>
             ),
