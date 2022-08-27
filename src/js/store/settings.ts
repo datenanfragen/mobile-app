@@ -1,7 +1,10 @@
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
+import { PrivacyAsyncStorage } from '@datenanfragen/components';
 import { produce } from 'immer';
 import { Email, EmailAccountSettings } from '../../plugins/email';
+
+const appSettingsStorage = new PrivacyAsyncStorage(() => true, { name: 'Datenanfragen.de', storeName: 'app-settings' });
 
 type AppSettingsState = {
     showTutorial: boolean;
@@ -65,7 +68,7 @@ export const useAppSettingsStore = create<AppSettingsState>(
             name: 'Datenanfragen.de-app-settings',
             version: 0,
             // TODO: Use our new PrivacyAsyncStorage here once it is available through the package.
-            getStorage: () => localStorage,
+            getStorage: () => appSettingsStorage,
             // This is necessary to communicate the credentials to the native plugin.
             onRehydrateStorage: () => async (state) => {
                 if (!state) return;
