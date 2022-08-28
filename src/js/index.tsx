@@ -11,10 +11,8 @@ import {
     AppMenu,
     ProceedingsList,
     miniSearchClient,
-    miniSearchIndexFromOfflineData,
     useCacheStore,
 } from '@datenanfragen/components';
-import hardcodedOfflineData from '@datenanfragen/components/dist/offline-data.json';
 import { useAppSettingsStore } from './store/settings';
 import { SetupTutorial } from './setup-tutorial';
 import { IntlProvider, Text } from 'preact-i18n';
@@ -24,7 +22,7 @@ import { t_a } from '@datenanfragen/components';
 
 const pages = (
     setPage: SetMobileAppPageFunction,
-    offlineSearch: false | ReturnType<typeof miniSearchIndexFromOfflineData>,
+    offlineSearch: false | Parameters<typeof miniSearchClient>[0],
     sendMail?: (data: EmailData) => void
 ) => ({
     newRequests: {
@@ -70,14 +68,8 @@ const DesktopApp = () => {
     ]);
     const smtpUser = useAppSettingsStore((state) => state.emailAccountSettings.smtpUser);
 
-    const offlineData = useCacheStore((state) =>
-        state.offlineData ? JSON.parse(state.offlineData) : hardcodedOfflineData
-    );
+    const [miniSearch, offlineDataDate] = useCacheStore((state) => [state.miniSearch, state.date]);
     const updateOfflineData = useCacheStore((state) => state.updateOfflineData);
-    const offlineSearch = useMemo(
-        () => (useOfflineSearch ? miniSearchIndexFromOfflineData(offlineData) : false),
-        [useOfflineSearch, offlineData]
-    );
 
     const sendMail = useMemo(
         () =>
@@ -113,7 +105,7 @@ const DesktopApp = () => {
         []
     );
 
-    const { Wizard, set, pageId } = useWizard(pages(setPage, offlineSearch, sendMail), {
+    const { Wizard, set, pageId } = useWizard(pages(setPage, useOfflineSearch ? miniSearch : false, sendMail), {
         initialPageId: 'newRequests',
     });
 
@@ -128,7 +120,7 @@ const DesktopApp = () => {
             ) : (
                 <>
                     <AppMenu setPage={setPage} activePage={pageId} />
-                    {useOfflineSearch && new Date(offlineData.date) < new Date(Date.now() - 1000 * 60 * 60 * 24 * 14) && (
+                    {useOfflineSearch && new Date(offlineDataDate) < new Date(Date.now() - 1000 * 60 * 60 * 24 * 14) && (
                         <div class="box box-warning" style="margin-bottom: 20px;">
                             {t_a('offline-data-outdated', 'settings')}
                             <button class="button button-secondary button-small" onClick={updateOfflineData}>
