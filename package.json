@@ -35,6 +35,7 @@
         "preact-i18n": "^2.3.0-preactx"
     },
     "devDependencies": {
+        "@capacitor/assets": "^1.0.0-next.5",
         "@capacitor/cli": "^3.5.1",
         "@parcel/transformer-sass": "2.5.0",
         "@types/preact-i18n": "^2.3.1",
@@ -45,6 +46,7 @@
         "typescript": "^4.7.4"
     },
     "scripts": {
+        "generate-assets": "capacitor-assets generate --iconBackgroundColor '#e0edf8' --iconBackgroundColorDark '#214192' --splashBackgroundColor '#e0edf8' --splashBackgroundColorDark '#214192'",
         "dev:parcel": "parcel src/index.html --dist-dir public --no-hmr",
         "dev": "yarn npm-run-all --parallel dev:*",
         "sync-dev": "NODE_ENV=development yarn cap sync",
