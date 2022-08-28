@@ -47,9 +47,12 @@
     },
     "scripts": {
         "generate-assets": "capacitor-assets generate --iconBackgroundColor '#e0edf8' --iconBackgroundColorDark '#214192' --splashBackgroundColor '#e0edf8' --splashBackgroundColorDark '#214192'",
+        "build:parcel": "parcel build src/index.html --dist-dir public",
+        "build": "yarn npm-run-all --parallel build:*",
         "dev:parcel": "parcel src/index.html --dist-dir public --no-hmr",
         "dev": "yarn npm-run-all --parallel dev:*",
         "sync-dev": "NODE_ENV=development yarn cap sync",
+        "sync-prod": "yarn cap sync",
         "run-dev": "NODE_ENV=development yarn cap run"
     },
     "alias": {
