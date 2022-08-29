@@ -19,6 +19,7 @@ import { IntlProvider, Text } from 'preact-i18n';
 import { Settings } from './settings';
 import { useMemo } from 'preact/hooks';
 import { t_a } from '@datenanfragen/components';
+import { NoticesPage } from './Components/NoticesPage';
 
 const pages = (
     setPage: SetMobileAppPageFunction,
@@ -33,7 +34,7 @@ const pages = (
                     pageOptions={{
                         mailtoDropdown: {
                             handlers: sendMail
-                                ? ['mailto', 'sendmail' as unknown as keyof typeof mailto_handlers]
+                                ? ['mailto', ('sendmail' as unknown) as keyof typeof mailto_handlers]
                                 : ['mailto'],
                             additionalHandlers: {
                                 sendmail: {
@@ -54,7 +55,10 @@ const pages = (
     },
     settings: {
         title: t_a('settings', 'app'),
-        component: <Settings />,
+        component: <Settings setPage={setPage} />,
+    },
+    notices: {
+        component: <NoticesPage />,
     },
 });
 

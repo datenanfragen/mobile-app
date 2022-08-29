@@ -1,5 +1,7 @@
 public/
 
+/NOTICES.txt
+
 .envrc
 tmp
 *.tmp

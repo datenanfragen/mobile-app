@@ -1,9 +1,14 @@
-import { flash, FlashMessage, I18nWidget, useCacheStore, useAppStore } from '@datenanfragen/components';
+import { flash, FlashMessage, I18nWidget, useCacheStore, useAppStore, t } from '@datenanfragen/components';
 import { EmailAccountSettingsInput } from '@datenanfragen/components';
 import { IntlProvider, Text } from 'preact-i18n';
+import type { SetMobileAppPageFunction } from './index';
 import { useAppSettingsStore } from './store/settings';
 
-export const Settings = () => {
+export type SettingsProps = {
+    setPage: SetMobileAppPageFunction;
+}
+
+export const Settings = (props: SettingsProps) => {
     const [setEmailAccountSetting, setReceiveNotifications, setUseOfflineSearch] = useAppSettingsStore((state) => [
         state.setEmailAccountSetting,
         state.setReceiveNotifications,
@@ -107,6 +112,15 @@ export const Settings = () => {
                     })
                 }
             />
+
+            <hr style="margin-top: 10px;" />
+            <p style="text-align: right;">
+                <a href={window.BASE_URL + 'contact'}>{t('footer-legal-notice', 'hugo')}</a> &bull;{' '}
+                <a href={window.BASE_URL + 'privacy'}>{t('footer-privacy-policy', 'hugo')}</a> &bull;{' '}
+                <a href="#" onClick={() => props.setPage('notices')}>
+                    {t('footer-licenses', 'hugo')}
+                </a>
+            </p>
         </IntlProvider>
     );
 };
