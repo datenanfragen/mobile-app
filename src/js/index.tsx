@@ -82,7 +82,7 @@ export type SetMobileAppPageFunction = (newPage: MobileAppPageId, params?: Recor
 
 const MobileApp = () => {
     const [showTutorial, useOfflineSearch] = useAppSettingsStore((state) => [
-        state.showTutorial,
+        false, // TODO: Implement tutorial.
         state.useOfflineSearch,
     ]);
     const smtpUser = useAppSettingsStore((state) => state.emailAccountSettings.smtpUser);
