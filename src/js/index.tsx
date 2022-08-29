@@ -48,6 +48,7 @@ const pages = (
                             searchClient: offlineSearch
                                 ? (params) => miniSearchClient(offlineSearch, params)
                                 : undefined,
+                            onViewRequests: () => setPage('proceedings'),
                         }}
                     />
                 </RequestGeneratorProvider>
