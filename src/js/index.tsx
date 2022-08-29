@@ -12,6 +12,8 @@ import {
     ProceedingsList,
     miniSearchClient,
     useCacheStore,
+    MailtoDropdownProps,
+    Reactor,
 } from '@datenanfragen/components';
 import { useAppSettingsStore } from './store/settings';
 import { SetupTutorial } from './setup-tutorial';
@@ -25,47 +27,59 @@ const pages = (
     setPage: SetMobileAppPageFunction,
     offlineSearch: false | Parameters<typeof miniSearchClient>[0],
     sendMail?: (data: EmailData) => void
-) => ({
-    newRequests: {
-        title: t_a('new-requests', 'app'),
-        component: (
-            <RequestGeneratorProvider createStore={createGeneratorStore}>
-                <App
-                    pageOptions={{
-                        mailtoDropdown: {
-                            handlers: sendMail
-                                ? ['mailto', ('sendmail' as unknown) as keyof typeof mailto_handlers]
-                                : ['mailto'],
-                            additionalHandlers: {
-                                sendmail: {
-                                    onClick: (d, _) => sendMail?.(d),
-                                    countries: [],
-                                },
-                            },
-                        },
-                        searchClient: offlineSearch ? (params) => miniSearchClient(offlineSearch, params) : undefined,
-                    }}
-                />
-            </RequestGeneratorProvider>
-        ),
-    },
-    proceedings: {
-        title: t_a('proceedings', 'app'),
-        component: <ProceedingsList setPage={setPage} />,
-    },
-    settings: {
-        title: t_a('settings', 'app'),
-        component: <Settings setPage={setPage} />,
-    },
-    notices: {
-        component: <NoticesPage />,
-    },
-});
+) => {
+    const mailtoDropdown: Partial<MailtoDropdownProps> = {
+        handlers: sendMail ? ['mailto', ('sendmail' as unknown) as keyof typeof mailto_handlers] : ['mailto'],
+        additionalHandlers: {
+            sendmail: {
+                onClick: (d, _) => sendMail?.(d),
+                countries: [],
+            },
+        },
+    };
+    return {
+        newRequests: {
+            title: t_a('new-requests', 'app'),
+            component: (
+                <RequestGeneratorProvider createStore={createGeneratorStore}>
+                    <App
+                        pageOptions={{
+                            mailtoDropdown,
+                            searchClient: offlineSearch
+                                ? (params) => miniSearchClient(offlineSearch, params)
+                                : undefined,
+                        }}
+                    />
+                </RequestGeneratorProvider>
+            ),
+        },
+        reactor: {
+            component: (
+                <>
+                    {window.PARAMETERS.reference && (
+                        <Reactor reference={window.PARAMETERS.reference} pageOptions={{ mailtoDropdown }} />
+                    )}
+                </>
+            ),
+        },
+        proceedings: {
+            title: t_a('proceedings', 'app'),
+            component: <ProceedingsList setPage={setPage} />,
+        },
+        settings: {
+            title: t_a('settings', 'app'),
+            component: <Settings setPage={setPage} />,
+        },
+        notices: {
+            component: <NoticesPage />,
+        },
+    };
+};
 
 export type MobileAppPageId = keyof ReturnType<typeof pages>;
-export type SetMobileAppPageFunction = (newPage: MobileAppPageId) => void;
+export type SetMobileAppPageFunction = (newPage: MobileAppPageId, params?: Record<string, string>) => void;
 
-const DesktopApp = () => {
+const MobileApp = () => {
     const [showTutorial, useOfflineSearch] = useAppSettingsStore((state) => [
         state.showTutorial,
         state.useOfflineSearch,
@@ -110,11 +124,17 @@ const DesktopApp = () => {
     );
 
     const { Wizard, set, pageId } = useWizard(pages(setPage, useOfflineSearch ? miniSearch : false, sendMail), {
-        initialPageId: 'newRequests',
+        initialPageId: (window.PARAMETERS.page as MobileAppPageId) || 'newRequests',
     });
 
-    function setPage(new_page: MobileAppPageId) {
-        set(new_page);
+    function setPage(newPage: MobileAppPageId, params?: Record<string, string>) {
+        // TODO: Wizard *really* isn't meant to be a router. :| We should replace this with a proper router soon.
+        if (params) {
+            window.location.hash = `!page=${newPage}${Object.entries(params || {})
+                .map(([k, v]) => `&${k}=${v}`)
+                .join('')}`;
+            setTimeout(() => window.location.reload(), 0);
+        } else set(newPage);
     }
 
     const app = useMemo(
@@ -142,4 +162,4 @@ const DesktopApp = () => {
 };
 
 const el = document.getElementById('app');
-if (el) render(<DesktopApp />, el);
+if (el) render(<MobileApp />, el);

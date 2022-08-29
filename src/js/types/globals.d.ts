@@ -7,6 +7,8 @@ declare global {
         readonly BASE_URL: string;
         /** The site version as specified in `package.json`. */
         readonly CODE_VERSION: string;
+        /** List of parameters specified in the URL, including both hash fragment and GET parameters. */
+        readonly PARAMETERS: Record<string, string>;
 
         readonly I18N_DEFINITION_APP: typeof appTranslations['en'];
 
