@@ -16,10 +16,10 @@ import { useAppSettingsStore } from './store/settings';
 // TODO: Error handler.
 let notificationId = 1;
 const errorHandler = (err: ErrorEvent | PromiseRejectionEvent) => {
-    if ('message' in err)
-        LocalNotifications.schedule({
-            notifications: [{ title: 'An error occurred', body: err.message, id: notificationId++ }],
-        });
+    // if ('message' in err)
+    //     LocalNotifications.schedule({
+    //         notifications: [{ title: 'An error occurred', body: err.message, id: notificationId++ }],
+    //     });
     console.error('An error occurred:', err);
 };
 window.addEventListener('unhandledrejection', (e) => {
