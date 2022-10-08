@@ -36,7 +36,7 @@ If you are interested in contributing in other ways besides coding, we can also 
 
 ## Acknowledgements
 
-The German Federal Ministry of Education and Research sponsored the work of the Lorenz Sieben und Benjamin Altpeter GbR on this app between March 2022 and August 2022 through the Prototype Fund (grant number 011522520).
+The German Federal Ministry of Education and Research sponsored the work of the Lorenz Sieben und Benjamin Altpeter GbR on this app between March 2022 and August 2022 through the Prototype Fund (grant number 01IS22S20).
 
 <p align="center">
   <img width="350" alt="Sponsored by the German Federal Ministry of Education and Research through the Prototype Fund." src="https://static.dacdn.de/other/bmbf-ptf-logo.svg">
